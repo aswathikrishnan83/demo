@@ -1,13 +1,9 @@
 public with sharing class accountHelper {
- /*
-    This is a test commit
-
- */
-        public static void updateTasks(Map<Id,Account>AccMap)
+    public static void updateTasks(Map<Id,Account>AccMap)
         {
             //query metadata type
             //update task
-            /*
+            /*This is some change for committing to git.
             @author:Aswathi Rajeesh
             Date:1/11/2021
             Comments:Created for updating task for an account*/
