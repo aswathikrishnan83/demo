@@ -1,0 +1,41 @@
+<aura:component controller="ClientTypeController" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId,flexipage:availableForRecordHome" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="errors" type="Object" default="[]" />
+    <aura:attribute name="draftValues" type="Object" default="[]" />
+    <aura:attribute name="newView" type="boolean" default="false" />
+    <aura:attribute name="Editview" type="boolean" default="true" />
+    <aura:attribute name="suppressSavePanel" type="Boolean" default="false" />
+    <aura:attribute name="contactId" type="String" />
+    <lightning:overlayLibrary aura:id="overlayLib" />
+    <lightning:card>
+
+
+        <div class="slds-grid slds-gutters">
+
+            <div class="slds-col slds-size_4-of-5">
+                <span><h3 class="slds-section-title--divider"><b>Client Type Information</b></h3></span>
+            </div>
+            <div class="slds-col slds-size_1-of-5">
+
+                <lightning:button variant="brand" label="New" title="New" onclick="{! c.handleClick }"></lightning:button>
+
+            </div>
+
+
+        </div>
+        <br/>
+        <br/>
+
+        <div style="height: 300px">
+
+            <lightning:datatable suppressBottomBar="{!v.suppressSavePanel}" columns="{! v.columns }" data="{! v.data }" keyField="Id" errors="{! v.errors }" draftValues="{! v.draftValues }" onsave="{! c.handleSaveEdition }" hideCheckboxColumn="true" />
+        </div>
+
+
+
+    </lightning:card>
+
+</aura:component>

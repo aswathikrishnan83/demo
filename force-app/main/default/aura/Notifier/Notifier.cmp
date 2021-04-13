@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:registerEvent name="test" type="c:test"/>
+    <h1>component event example</h1>
+    <p>
+        <lightning:button label="Fire Event" onclick="{!c.fireEvt}"/>
+    
+    </p>
+	
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <p>This is a  LEFT test..</p>
+	
+</aura:component>

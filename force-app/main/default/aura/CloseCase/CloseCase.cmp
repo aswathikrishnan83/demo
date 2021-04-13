@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <lightning:flow aura:id="flowData" />
+    <lightning:button variant="base" label="Close Case" title="Base action" onclick="{! c.closeCase }"/>
+</aura:component>

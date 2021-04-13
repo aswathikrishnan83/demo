@@ -1,0 +1,91 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" controller="ClientTypeController">
+    <aura:attribute name="parent" type="Object" />
+    <lightning:overlayLibrary aura:id="overlayLib" />
+    <aura:attribute name="showRadioButton" type="boolean" default="true" />
+    <aura:attribute name="Taxator" type="boolean" default="false" />
+    <aura:attribute name="Appraiser" type="boolean" default="false" />
+    <aura:attribute name="Lender" type="boolean" default="false" />
+    <aura:attribute name="radioValue" type="String" default="Appraiser" />
+    <aura:attribute name="contactId" type="String" />
+    <aura:attribute name="clientType" type="String" />
+    <aura:attribute name="reloadForm" type="boolean" default="true" />
+    <aura:attribute name="clientRecord" type="Object" />
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Appraiser', 'value': 'Appraiser'},
+                                                        {'label': 'Lender', 'value': 'Lender'},
+                                                        {'label': 'Taxator', 'value': 'Taxator'}
+                                                       
+                                                        
+                                                        
+                                                        ]" />
+    <aura:attribute name="cTypeVals" type="Object" />
+    <aura:attribute name="selectedValue" type="String" />
+    <aura:attribute name="newClientType" type="Object" />
+    <aura:attribute name="simplenewClientType" type="Client_Type__c" />
+    <aura:attribute name="newClientTypeError" type="String" />
+    <force:recordData aura:id="clientTypeRecordCreator" fields="Client_Type__c,TAXID__c,Company__c,LENDER_ID__c,Appraiser_ID__c" targetRecord="{!v.newClientType}" targetFields="{!v.simplenewClientType}" targetError="{!v.newClientTypeError}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- Display the new contact form iconName="action:new_contact"-->
+    <lightning:card>
+        <div class="slds-p-horizontal--small">
+
+            <!--<lightning:input aura:id="clientTypeField" label="Client Type" value="{!v.simplenewClientType.Client_Type__c}" />-->
+            <lightning:select aura:id="clientTypeField"  onchange="{!c.handleClientTypeChange}" name="industryPicklist" label="ClientType" required="true" value="{!v.selectedValue}">
+                   
+                    <aura:iteration items="{!v.cTypeVals}" var="ind" indexVar="key">
+                        <option text="{!ind}" value="{!ind}" />
+                    </aura:iteration>
+             </lightning:select>
+            <aura:if isTrue="{!v.simplenewClientType.Client_Type__c=='Taxator'}">
+                <lightning:input aura:id="clientTypeField" label="Tax Id" pattern='^\d{9}$' value="{!v.simplenewClientType.TAXID__c}" messageWhenPatternMismatch="Tax Id is a 9 digit number." required="{!v.simplenewClientType.Client_Type__c=='Taxator'}" />
+            </aura:if>
+            <aura:if isTrue="{!v.simplenewClientType.Client_Type__c=='Lender'}">
+                <lightning:input aura:id="clientTypeField" label="Lender Id" pattern='^\d{10}$' value="{!v.simplenewClientType.LENDER_ID__c}" messageWhenPatternMismatch="Lender Id is a 10 digit number." required="{!v.simplenewClientType.Client_Type__c=='Lender'}" />
+            </aura:if>
+            <aura:if isTrue="{!v.simplenewClientType.Client_Type__c=='Appraiser'}">
+                <lightning:input aura:id="clientTypeField" label="Appraiser Id" pattern='^\d{10}$' value="{!v.simplenewClientType.Appraiser_ID__c}" messageWhenPatternMismatch="Appraiser Id is a 10 digit number." required="{!v.simplenewClientType.Client_Type__c=='Appraiser'}"
+                />
+            </aura:if>
+            <lightning:input aura:id="clientTypeField" label="Company" value="{!v.simplenewClientType.Company__c}" required="true" />
+            <br/>
+            <lightning:button label="Save" variant="brand" onclick="{!c.handleSaveRecord}" />
+        </div>
+    </lightning:card>
+    <!-- Display Lightning Data Service errors -->
+    <aura:if isTrue="{!not(empty(v.newClientTypeError))}">
+        <div class="recordError">
+            {!v.newClientTypeError}
+        </div>
+    </aura:if>
+
+    <!--<div class="slds-text-align_center slds-m-around_x-medium">
+        <lightning:card class="test">
+            <lightning:recordEditForm objectApiName="Client_Type__c" aura:id="recEditForm" onsubmit="{!v.saveRcd}" onerror="{!c.handleError}" onload="{!v.handleLoad}" onsuccess="{!v.closeModal}">
+                <lightning:messages />
+                <aura:if isTrue="{!v.reloadForm}">
+                    <div class="slds-p-left_medium test2">
+                        <p>Select the client type</p>
+                        <lightning:inputField fieldName="Client_Type__c" value="{!v.clientType}" />
+                    </div>
+                    <aura:if isTrue="{!v.clientType =='Taxator'}">
+                        <lightning:inputField fieldName="TAXID__c" aura:id="taxid" />
+                        <lightning:inputField fieldName="Company__c" aura:id="compId" />
+                    </aura:if>
+                    <aura:if isTrue="{!v.clientType=='Lender'}">
+                        <lightning:inputField fieldName="LENDER_ID__c" aura:id="lenderid" />
+                        <lightning:inputField fieldName="Company__c" aura:id="compId" />
+                    </aura:if>
+                    <aura:if isTrue="{!v.clientType=='Appraiser'}">
+                        <lightning:inputField fieldName="Appraiser_ID__c" aura:id="appraiserid" />
+                        <lightning:inputField fieldName="Company__c" aura:id="compId" />
+                    </aura:if>
+                    <aura:set attribute="else">
+                        Saving...
+                    </aura:set>
+                </aura:if>
+                <lightning:button class="slds-m-top_small" variant="brand" label="Submit" onclick="{!c.handleSave}" />
+            </lightning:recordEditForm>
+
+        </lightning:card>
+    </div>-->
+</aura:component>

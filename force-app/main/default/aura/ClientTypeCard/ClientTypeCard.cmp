@@ -1,0 +1,64 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="ClientTypeController">
+    <aura:attribute name="acc" type="Client_Type__c" default='{"sObjectType":"Client_Type__c","Name":""}'/>
+    <aura:attribute name="type" type="String" default="appriser1"/>
+    <aura:attribute name="editView" type="boolean" default="false"/>
+    <aura:attribute name="normalView" type="boolean" default="true"/>
+    <aura:attribute name="hideEdit" type="boolean" default="true"/>
+    <aura:attribute name="reloadForm" type="boolean" default="true" />
+    <aura:attribute name="viewLoading" type="boolean" default="false"/>
+    <aura:attribute name="caseId" type="String"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="contactId" type="String"/>
+    <aura:attribute name="currRcdId" type="String"/>
+	
+    <lightning:card >
+        <aura:set attribute="title">
+        	<lightning:icon iconName="action:new_note" alternativeText="New note" title="Client Type" />
+            						<lightning:input type="checkbox" onchange="{!c.handleCheckBoxChange}" label="Select" value="{!v.acc.checkBox__c}"/>
+        </aura:set>
+      
+            <aura:if isTrue="{!v.normalView}">
+                <div class="slds-align_absolute-center">
+                    <aura:if isTrue="{!v.hideEdit}">
+                        <lightning:button label="Edit" title="Non-primary action" onclick="{!c.handleEdit}" class="slds-m-left_x-small"/>
+                      
+               
+                    </aura:if>
+                </div>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col">
+                        <lightning:input aura:id="clientType" variant="label-inline" type="text" name="clientType" label="Client Type" value="{!v.acc.Client_Type__c}" readonly="true" />
+                        <lightning:input variant="label-inline" type="text" label="Company" name="company" value="{!v.acc.Company}" readonly="true" />    
+                        <aura:if isTrue="{!v.acc.Client_Type__c=='Appraiser'}">
+                            <lightning:input variant="label-inline" label="AppraiserId" type="text" name="AppraiserId" value="{!v.acc.AppraiserId}" readonly="true" />
+                        </aura:if>
+                        <aura:if isTrue= "{!v.acc.Client_Type__c=='Taxator'}">
+                            <lightning:input variant="label-inline" label="TaxId" type="text" name="TaxId" value="{!v.acc.TaxId}" readonly="true" />
+                        </aura:if>
+                        <aura:if isTrue= "{!v.acc.Client_Type__c=='Lender'}">
+                            <lightning:input variant="label-inline" type="text" name="LenderId" value="{!v.acc.LenderId}" label="Lender Id" readonly="true" />
+                        </aura:if>
+                    </div>
+                </div>
+                
+            </aura:if>
+            <aura:if isTrue="{!v.viewLoading}">
+                <lightning:spinner alternativeText="Loading" size="medium" />
+            </aura:if>
+        	
+            <aura:if isTrue="{!v.editView}">
+             <lightning:recordEditForm aura:id="editForm" recordId="{!v.acc.Id}" onload="{!c.editFormLoaded}" objectApiName="Client_Type__c" onsuccess="{!c.handleSuccess}" onsubmit="{!c.handleEditFormSubmit}">
+                <lightning:inputField aura:id="name" fieldName="Client_Type__c" />
+                <lightning:inputField aura:id="cmp" fieldName="Company__c" />
+                <lightning:inputField aura:id="app" fieldName="Appraiser_ID__c" />
+                <lightning:inputField aura:id="tax" fieldName="TAXID__c" />
+                <lightning:inputField aura:id="len" fieldName="LENDER_ID__c" />
+                <lightning:inputField aura:id="chum" fieldName="CHUMS_ID__c" />
+                <div class="slds-align_absolute-center">
+                    <lightning:button disabled="{!v.disabled}" label="Cancel" onclick="{! c.cancelEditForm }"/>
+                    <lightning:button disabled="{!v.disabled}" variant="brand" type="submit" name="save" label="Save" />
+                </div>
+            </lightning:recordEditForm>
+           </aura:if>
+    </lightning:card>
+</aura:component>

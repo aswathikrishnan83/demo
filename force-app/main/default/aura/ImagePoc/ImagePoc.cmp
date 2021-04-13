@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="TestCtrl" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> 
+    <aura:attribute name="contents" type="List" default="[]"/>
+     <aura:attribute name="accountName" type="String"/>
+    <aura:attribute name="prefixURL" type="String" default="/sfc/servlet.shepherd/document/download/"/>
+    <!--<aura:iteration items="{!v.contents}" var="content">-->
+    <!-- <img src="{!v.prefixURL + content.Id}" width="200" height="200"/>-->  
+    <p>Account:{!v.accountName}</p>
+    <div style="height:400px;width:600px;">
+        <lightning:carousel disableAutoRefresh="false" disableAutoScroll="false">
+         <aura:iteration items="{!v.contents}" var="content">
+                <lightning:carouselImage
+                                         src = "{!v.prefixURL + content.ContentDocumentId}">
+                </lightning:carouselImage>
+           </aura:iteration>
+         </lightning:carousel>
+    </div>
+</aura:component>

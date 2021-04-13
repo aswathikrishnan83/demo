@@ -1,0 +1,18 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="titleText" type="String" default=" So to better reflect the many types of experiences you can create, we’re now called Experience Cloud. While we’re excited to announce this new name to the world, note that the name in the product is remaining Community Cloud for a little bit longer. Use Experience Cloud for all powerful features you’ve come to cherish with Community Cloud."/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showFlag" type="boolean" default="false"/>
+    <lightning:card title="Text">
+	   <p>
+       
+        <aura:if isTrue="{!v.showFlag}">
+            <span class="test">
+                     {!v.titleText}
+            </span>
+            <lightning:button variant="neutral" label="show more/less" onclick="{!c.toggleText}"/>
+        </aura:if>
+   
+    
+        </p>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,19 @@
+<aura:component controller="CaseController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="caseRecord" type="Object"/>
+    <aura:attribute name="recordLoadError" type="String"/>
+    <aura:attribute name="recordLoaded" type="Boolean" default="false"/>
+    <lightning:card>
+        <center>
+            <div class="slds-box">
+            <i>Please Click this button to display the client type details for the selected contact</i>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+    <lightning:button variant="brand" label="Display Client Type" title="Display Client Type" onclick="{! c.showClientType }" />
+        </center>
+    </lightning:card>
+
+</aura:component>

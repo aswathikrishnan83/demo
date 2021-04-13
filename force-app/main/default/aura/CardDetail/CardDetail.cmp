@@ -1,0 +1,21 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordId" type="String"/>  
+    <lightning:Card>
+    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Case">
+       
+        <div class="slds-grid"> 
+            <div class="slds-col slds-size_1-of-2">
+                
+              <h3 class="slds-section-title--divider">Case Details</h3>
+             <lightning:inputField fieldName="Name"/>
+             <lightning:inputField fieldName="ContactName__c"/>
+                
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+               <lightning:inputField fieldName="Subject"/>
+                <!-- More lightning:inputField components here -->
+            </div>
+        </div>
+    </lightning:recordEditForm>
+    </lightning:Card>
+</aura:component>

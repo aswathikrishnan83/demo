@@ -1,0 +1,7 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="msgfromevt" type="String"/>
+    <aura:attribute name="noofevts" type="Integer"/>
+    <aura:handler name="test" event="c:test" action="{!c.handleCmpEvt}"/>
+    {!v.msgfromevt}
+    <c:Notifier/>
+</aura:component>

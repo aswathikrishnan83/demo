@@ -1,0 +1,53 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="ClientTypeController">
+    <aura:attribute name="keywordHolder" type="string" />
+    <aura:attribute name="accountList" type="list" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="clientTypeLst" type="list" />
+    <aura:attribute name="contactId" type="String"/>
+    <aura:attribute name="caseId" type="String"/>
+      <aura:attribute name="acc" type="Client_Type__c" default='{"sObjectType":"Client_Type__c","Name":""}'/>
+    <aura:attribute name="type" type="String" default="appriser1"/>
+    <aura:attribute name="editView" type="boolean" default="false"/>
+    <aura:attribute name="normalView" type="boolean" default="true"/>
+    <aura:attribute name="hideEdit" type="boolean" default="true"/>
+    <aura:attribute name="reloadForm" type="boolean" default="true" />
+    <aura:attribute name="viewLoading" type="boolean" default="false"/>
+    <aura:attribute name="selectedClientType" type="Client_Type__c"/>
+ 
+
+    <lightning:overlayLibrary aura:id="overlayLib" /> 
+    
+    <lightning:card>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_8-of-12 slds-m-left_medium">
+                <lightning:icon iconName="standard:client" size="small"/>
+                <b> Client Types</b>
+            </div>
+            <div class="slds-col slds-size_1-of-12">
+            </div>
+            <div class="slds-col slds-size_2-of-12 slds-m-left_xx-large">
+                <lightning:button variant="Neutral" label="Create New" title="Create New" onclick="{! c.handleClick }"></lightning:button>
+            </div>
+             <!--<div class="slds-col slds-size_2-of-12 slds-m-left_xx-large">
+                 <lightning:button label="Edit" title="Non-primary action" onclick="{!c.handleEdit}" class="slds-m-left_x-small"/>
+            </div>
+             <div class="slds-col slds-size_2-of-12 slds-m-left_xx-large">
+                <lightning:button variant="Neutral" label="Assign to case" title="Create New" onclick="{!c.handleAssign}"></lightning:button>
+            </div>-->
+                
+            </div>
+    
+        <div class="slds-grid slds-wrap">
+        <aura:iteration var="acc" items="{!v.clientTypeLst}">
+                <div class="slds-col slds-size_1-of-3">
+                    <div class="slds-box slds-m-around_small">
+                       
+                        	
+                        <c:ClientTypeCard caseId="{!acc.caseId}" acc="{!acc}" />
+                    </div>
+                </div>
+        </aura:iteration>
+        </div>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name='htmlStr' type='String' />
+    <p>This is a test</p>
+    <!-- <img src="{!$Resource.<your_resource_name> + '/assets/icons/action/user_60.png'}"></img>-->
+    <!--<img src="{!$Resource.map}" />-->
+    <aura:unescapedHtml value='{!v.htmlStr}' />
+</aura:component>
