@@ -1,4 +1,5 @@
 public with sharing class getData {
+    //testing again
     @AuraEnabled
     public static List<Account> getAccount(String State){
         try {
@@ -11,5 +12,6 @@ public with sharing class getData {
             throw new AuraHandledException(e.getMessage());
         }
     }
+    //end test
 
 }
