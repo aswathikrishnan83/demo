@@ -8,6 +8,8 @@ public with sharing class accountHelper {
             Date:1/11/2021
             Comments:Created for updating task for an account*/
             //testing from server again
+            //test
+            //testing from client
             List<Account>accLst=AccMap.values();
             Create_Task_for_account__mdt[] acctasks=[Select 	Task_Name__c From Create_Task_for_account__mdt];
             system.debug('metadat size'+acctasks.size());
