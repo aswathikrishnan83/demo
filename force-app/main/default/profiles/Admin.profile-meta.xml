@@ -137,6 +137,11 @@
         <enabled>false</enabled>
     </classAccesses>
     <custom>false</custom>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Test__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <pageAccesses>
         <apexPage>AnswersHome</apexPage>
         <enabled>false</enabled>
