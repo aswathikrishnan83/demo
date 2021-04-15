@@ -5,6 +5,9 @@ public with sharing class getData {
             //this s in serevr
             //this is from client
             //this is from client2
+            ////commented by user2
+            String abcd = 'test';
+            //this is by ash from client;
              String queryStr='Select Name From Account where State__c =:State';
              List<Account>AccLst=Database.Query(queryStr);
              return AccLst;
