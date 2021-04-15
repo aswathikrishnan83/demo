@@ -32,7 +32,6 @@ public class ClientTypeController {
     @AuraEnabled
     public static void updateClientType(Client_Type__c clientTypeLst)
     {
-        //Test
     
       update clientTypeLst;
     }
