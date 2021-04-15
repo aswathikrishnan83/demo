@@ -1,13 +1,14 @@
 public with sharing class accountHelper {
-    public static void updateTasks(Map<Id,Account>AccMap)
+ 
+        public static void updateTasks(Map<Id,Account>AccMap)
         {
             //query metadata type
             //update task
-            /*This is some change for committing to git.
+            /*
             @author:Aswathi Rajeesh
             Date:1/11/2021
             Comments:Created for updating task for an account*/
-            //test
+            String test = 'this is coool';
             List<Account>accLst=AccMap.values();
             Create_Task_for_account__mdt[] acctasks=[Select 	Task_Name__c From Create_Task_for_account__mdt];
             system.debug('metadat size'+acctasks.size());
